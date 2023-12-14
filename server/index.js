@@ -1,20 +1,12 @@
-import express from "express";
+import { express } from 'express'
 const express = require('express')
-const path = require('path')
-
-
-const app = express();
-
-const PORT = 3000
-
-const clientPath = Path.resolve(__dirname, '../client/dist')
-
-app.use(express.static(clientPath))
-
-app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'))
-})
-
-app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`)
+const cors = require('cors')
+const db = require('./db')
+const app = express()
+const port = 3000
+app.use(express.json())
+app.use(cors())
+app.get('/api/links', db.getLinks)
+app.listen(port, () => {
+console.log(`App running on port ${port}.`)
 })
