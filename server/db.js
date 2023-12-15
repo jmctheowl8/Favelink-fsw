@@ -10,6 +10,8 @@ const pool = new Pool({
 const express = require('express');
 const router = express.Router();
 
+router.use(express.json());
+
 // GET /api/favlinks
 router.get('/favlinks', async (req, res) => {
   try {
